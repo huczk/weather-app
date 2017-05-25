@@ -32,7 +32,7 @@ export default class App extends Component {
       <div>
         {this.state.error ? this.state.error :
           <div>
-            <img className='logo' src='src\public\2000px-Thermometer_00.svg.png'/>
+            <img className='logo' src='dist\public\2000px-Thermometer_00.svg.png'/>
             <h1 className='main-title'>Check Weather</h1>
             {!this.state.current ? <p>Loading...</p> :
               <div>

@@ -37,14 +37,14 @@ const WeatherMain = ({data}) => {
       <h2>Current Weather</h2>
       <div className='desc-ico'>
         <div>
-          <img src={`src/public/icons/${data.weather[0].icon}.png`}/>
+          <img src={`dist/public/icons/${data.weather[0].icon}.png`}/>
         </div>
         <div className='description'>
           <div className='description_title'>
             <h1>{`${data.name} ${data.main.temp.toFixed()} °C`}</h1>
           </div>
-          <p><img className={'sun-ico'} src="src\public\sunrise.png"/>{` Sunrise: ${moment(data.sys.sunrise).format('LT')}`}</p>
-          <p><img className={'sun-ico'} src="src\public\sunset.png"/>{` Sunset: ${moment(data.sys.sunset + 43200000).format('LT')}`}</p>
+          <p><img className={'sun-ico'} src="dist\public\sunrise.png"/>{` Sunrise: ${moment(data.sys.sunrise).format('LT')}`}</p>
+          <p><img className={'sun-ico'} src="dist\public\sunset.png"/>{` Sunset: ${moment(data.sys.sunset + 43200000).format('LT')}`}</p>
         </div>
       </div>
       <div className={'circles'}>
