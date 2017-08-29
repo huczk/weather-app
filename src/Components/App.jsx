@@ -15,10 +15,16 @@ export default class App extends Component {
   }
 
   componentWillMount() {
+
+    // check if user has geolocation module
     if (navigator.geolocation) {
+
+      // get user position or show error if position is denied by user
       navigator.geolocation.getCurrentPosition((position) => {
         const latitude = position.coords.latitude;
         const longitude = position.coords.longitude;
+
+        // get weather data from api service
         axios.get(`${CURRENT_WEATHER_URL}&lat=${latitude}&lon=${longitude}`)
           .then(res => this.setState({ current: res.data }))
           .catch(err => this.setState({ error: err.message }));
