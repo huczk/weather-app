@@ -1,4 +1,5 @@
-let path = require('path');
+const path = require('path');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 const config = {
   entry: {
@@ -7,18 +8,20 @@ const config = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
-    publicPath: '/dist'
+    publicPath: '/dist',
   },
   module: {
     rules: [
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        use: ['babel-loader']
+        use: ['babel-loader'],
       },
     ],
   },
-  plugins: [],
+  plugins: [
+    new UglifyJSPlugin({ minimize: true }),
+  ],
 };
 
 module.exports = config;
