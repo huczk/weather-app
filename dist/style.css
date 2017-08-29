@@ -1,12 +1,6 @@
 body {
   font-family: 'Roboto', sans-serif;
-}
-
-.logo {
-  width: 40px;
-  height: 100px;
-  margin-left: 30px;
-  margin-top: 5px;
+  background-color: rgb(252, 252, 252);
 }
 
 .main-title {
@@ -14,42 +8,47 @@ body {
   margin-left: 2%;
 }
 
-h2 {
-  display: block;
+.main-errorMessage {
+  color: rgb(236, 59, 59);
+}
+
+.nowWeather-title,
+.forecast-title {
   background-color: rgba(28, 162, 82, 0.48);
   border: 1px rgb(28, 162, 82) solid;
-  width: 95%;
-  height: 50px;
-  text-align: center;
   border-radius: 5px;
-  margin: 10px auto;
   color: rgb(20, 116, 59);
-  padding-top: 15px
-}
-
-.desc-ico {
-  display: flex;
+  display: block;
+  height: 50px;
+  margin: 10px auto;
+  padding-top: 15px;
   text-align: center;
-  justify-content: center;
-  flex-wrap: wrap;
+  width: 95%;
 }
 
-.description {
+.nowWeather-main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+}
+
+.nowWeather-description {
   margin-left: 50px;
   margin-top: 30px;
 }
 
-.description p {
+.nowWeather-description p {
   display: inline-block;
   margin: 10px;
 }
 
-.description_title p, h1{
+.nowWeather-descriptionTitle p, h1{
   display: inline-block;
   margin: 20px;
 }
 
-.circles {
+.nowWeather-circles {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -58,18 +57,18 @@ h2 {
   margin: 40px 0;
 }
 
-.outer {
+.nowWeather-circlesOuter {
   width: 120px;
   height: 120px;
   border-radius: 50%;
-  /*border: black 2px solid;*/
   background-color: rgb(189, 189, 189);
   display: flex;
   align-items: center;
   margin: 20px
 }
 
-.sun-ico {
-  width: 35px;
+.nowWeather-sunriseIco,
+.nowWeather-sunsetIco {
   height: 35px;
+  width: 35px;
 }

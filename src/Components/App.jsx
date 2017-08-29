@@ -1,47 +1,49 @@
 import React, {Component} from 'react';
+import axios from 'axios';
 import WeatherMain from './Weather-main.jsx';
 import WeatherForecast from './Weather-forecast.jsx';
-import getData, {NOW_URL, FORECAST_URL} from '../api/api.js';
+import {CURRENT_WEATHER_URL, FORECAST_URL} from '../api/api.js';
 
 export default class App extends Component {
   constructor(props) {
     super(props)
-    this.state = {current: '', forecast: '', error: ''}
+    this.state = {
+      current: '',
+      forecast: '',
+      error: ''
+    }
   }
 
   componentDidMount() {
     if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          let lat = position.coords.latitude,
-          lon = position.coords.longitude;
-          getData(`${NOW_URL}&lat=${lat}&lon=${lon}`).then( res => this.setState({current: res}) );
-          getData(`${FORECAST_URL}&lat=${lat}&lon=${lon}`).then( res => this.setState({forecast: res}) );
-          // getData(`${NOW_URL}&lat=36&lon=27`).then( res => this.setState({current: res}) );
-          // getData(`${FORECAST_URL}&lat=36&lon=27`).then( res => this.setState({forecast: res}) );
-        },
-        (err) => this.setState({error: err.message})
-      );
+      navigator.geolocation.getCurrentPosition( position => {
+        let lat = position.coords.latitude;
+        let lon = position.coords.longitude;
+        axios.get(`${CURRENT_WEATHER_URL}&lat=${lat}&lon=${lon}`)
+          .then(res => this.setState({current: res.data}))
+          .catch(err => this.setState({error: err.message}));
+        axios.get(`${FORECAST_URL}&lat=${lat}&lon=${lon}`)
+          .then(res => this.setState({forecast: res.data}))
+          .catch(err => this.setState({error: err.message}));
+      }, err => this.setState({error: err.message}));
     } else {
-      this.setState({error: 'Geolocation is not available' })
+      this.setState({error: 'Geolocation is not available'})
     }
   }
 
   render() {
     return (
       <div>
-        {this.state.error ? this.state.error :
-          <div>
-            {/* <img className='logo' src='./public\2000px-Thermometer_00.svg.png'/> */}
-            <h1>🌡️</h1>
-            <h1 className='main-title'>Check Weather</h1>
-            {!this.state.current ? <p>Loading...</p> :
-              <div>
-                <WeatherMain data={this.state.current}/>
-                <WeatherForecast data={this.state.forecast}/>
-              </div>
-            }
-          </div>
+        <h1>🌡️</h1>
+        <h1 className='main-title'>Check Weather</h1>
+        {this.state.error
+          ? <p className='main-errorMessage'>{this.state.error}</p>
+          : !this.state.current
+            ? <p>Loading...</p>
+            : <div>
+              <WeatherMain data={this.state.current}/>
+              <WeatherForecast data={this.state.forecast}/>
+            </div>
         }
       </div>
     );

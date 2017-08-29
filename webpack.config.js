@@ -1,4 +1,3 @@
-// import path from 'path';
 let path = require('path');
 
 const config = {
