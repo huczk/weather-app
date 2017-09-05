@@ -2,8 +2,8 @@ import React from 'react';
 import moment from 'moment';
 
 const WeatherMain = ({ data }) => {
-
-  // create 3 div's styles by using weather data on them
+  // create 3 circles styles with sizes depend on weather data.
+  // Later add styles to div's in render method.
   const innerHumidity = {
     background: '#276CC7',
     height: `${data.main.humidity * 1.2}px`,

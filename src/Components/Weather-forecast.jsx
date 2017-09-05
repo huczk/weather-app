@@ -14,8 +14,7 @@ import moment from 'moment';
 moment.locale('pl');
 
 const WeatherForecast = ({ data }) => {
-
-  // prepare forecast data to render by 'recharts' library
+  // Prepare forecast data to render by 'recharts' library
   const forecast = data.list.map((item) => {
     const rain = item.rain ? item.rain['3h'] : 0;
     return {
