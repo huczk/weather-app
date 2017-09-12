@@ -5,35 +5,38 @@ const WeatherMain = ({ data }) => {
   // create 3 circles styles with sizes depend on weather data.
   // Later add styles to div's in render method.
   const innerHumidity = {
-    background: '#276CC7',
+    background: '#12355B',
     height: `${data.main.humidity * 1.2}px`,
     width: `${data.main.humidity * 1.2}px`,
     borderRadius: '50%',
     margin: '0 auto',
+    boxShadow: '0 0 30px rgb(18, 18, 18)',
   };
 
   const innerClouds = {
-    background: '#454955',
+    background: '#0E3B43',
     height: `${data.clouds.all * 1.2}px`,
     width: `${data.clouds.all * 1.2}px`,
     borderRadius: '50%',
     margin: '0 auto',
+    boxShadow: '0 0 30px rgb(18, 18, 18)',
   };
 
   const innerWind = {
-    width: 0,
-    height: 0,
-    borderLeft: '30px solid transparent',
-    borderRight: '30px solid transparent',
-    borderBottom: '80px solid #051923',
+    // width: 0,
+    // height: 0,
+    // borderLeft: '30px solid transparent',
+    // borderRight: '30px solid transparent',
+    // borderBottom: '80px solid #051923',
+    color: 'black',
     margin: '0 auto',
-    transform: `rotate(${data.wind.deg}deg)`,
+    fontSize: '80px',
+    transform: `rotate(${data.wind.deg}deg) scaleY(1.4)`,
+    textShadow: '0 0 30px rgb(18, 18, 18)',
   };
 
   return (
-    <div>
-      <h2 className="nowWeather-title">Current Weather</h2>
-
+    <div className="nowWeather">
       <div className="nowWeather-main">
         <div>
           <img src={`./public/icons/${data.weather[0].icon}.png`} alt="" />
@@ -62,7 +65,7 @@ const WeatherMain = ({ data }) => {
         </div>
         <div>
           <div className={'nowWeather-circlesOuter'}>
-            <div style={innerWind} />
+            <div style={innerWind} >▲</div>
           </div>
           <p>Wind Speed<br />{ `${data.wind.speed} m/s` }</p>
         </div>

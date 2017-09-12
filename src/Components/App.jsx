@@ -3,6 +3,7 @@ import axios from 'axios';
 import WeatherCurrent from './Weather-current.jsx';
 import WeatherForecast from './Weather-forecast.jsx';
 import { CURRENT_WEATHER_URL, FORECAST_URL } from '../api/apiLinks';
+import '../styles/styles.scss';
 
 export default class App extends Component {
   constructor(props) {
@@ -40,12 +41,14 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <h1>🌡️</h1>
-        <h1 className="main-title">Check Weather</h1>
+        <h1 className="main-title"><span role="img" >🌡️</span> Weatherify</h1>
         {this.state.error
-          ? <p className="main-errorMessage">{this.state.error}</p>
+          ? <p className="main-error">{this.state.error}</p>
           : !this.state.current || !this.state.forecast
-            ? <p>Loading...</p>
+            ? <div className="main-loading">
+                <div className="loader"></div>
+                <p>Loading...</p>
+              </div>
             : <div>
               <WeatherCurrent data={this.state.current} />
               <WeatherForecast data={this.state.forecast} />

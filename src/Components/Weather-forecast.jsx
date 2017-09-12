@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  Line,
   XAxis,
   YAxis,
   Tooltip,
@@ -18,7 +17,7 @@ const WeatherForecast = ({ data }) => {
   const forecast = data.list.map((item) => {
     const rain = item.rain ? item.rain['3h'] : 0;
     return {
-      name: moment(item.dt_txt).format('D MMMM, H:mm'),
+      name: moment(item.dt_txt).format('D.MM, H:mm'),
       temperature: item.main.temp,
       rain,
     };
@@ -40,9 +39,15 @@ const WeatherForecast = ({ data }) => {
           <XAxis dataKey="name" />
           <YAxis dataKey="temperature" type="number" domain={['auto', 'auto']} label="°C" tick={{ stroke: '#ff7300' }} yAxisId={0} />
           <YAxis dataKey="rain" type="number" domain={[0, 'dataMax + 20']} label="mm" orientation="right" tick={{ stroke: '#276CC7' }} yAxisId={1} />
-          <Tooltip />
-          <Legend verticalAlign="top" height={36} iconType="square" />
-          <Line type="monotone" dataKey="temperature" stroke="#ff7300" yAxisId={0} />
+          <Tooltip wrapperStyle={{
+            border: 'none',
+            borderRadius: '5px',
+            color: 'white',
+            backgroundColor: '#1F222A',
+            boxShadow: '0 0 20px -5px rgb(18, 18, 18)',
+          }} />
+          <Legend verticalAlign="top" height={36} iconType="circle" />
+          <Area type="monotone" dataKey="temperature" fill="#ff7300" stroke="#ff7300" yAxisId={0} />
           <Area type="monotone" dataKey="rain" fill="#3A79CC" stroke="#276CC7" yAxisId={1} />
         </ComposedChart>
       </ResponsiveContainer>
